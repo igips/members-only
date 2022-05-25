@@ -1,0 +1,32 @@
+nav {
+    background-color: #141414;
+    height: 50px;
+}
+
+#nav-main-div {
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 1600px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo-div {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#logo-div span {
+    padding-top: 12px;
+}
+
+#logo-div img {
+    width: 25px;
+    height: 25px;
+}
+

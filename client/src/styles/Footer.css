@@ -1,0 +1,14 @@
+footer {
+    background-color: #141414;
+    height: 40px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#footer-main-div {
+    max-width: 1600px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}

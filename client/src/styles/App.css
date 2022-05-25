@@ -1,0 +1,23 @@
+html {
+	box-sizing: border-box;
+}
+
+html, body, #root, .App {
+    height: 100%;
+}
+
+
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    font-family: 'Baloo Tammudu 2', cursive;
+}
+
+.App {
+	background-color: #1c1c1c;
+}
