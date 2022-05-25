@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import "../styles/App.css";
+import Nav from "./Nav";
+import Footer from "./Footer";
 
 function App() {
 	// const [a, setA] = useState(null);
@@ -13,7 +16,8 @@ function App() {
 
 	return (
 		<div className="App">
-			
+			<Nav />
+			<Footer />
 		</div>
 	);
 }
