@@ -7,6 +7,8 @@ function Nav() {
 			<div id="nav-main-div">
 				<div id="logo-div">
 					<span>Members Only</span>
+
+                    
 					<img src={logo} alt="" />
 				</div>
 			</div>
