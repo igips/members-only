@@ -15,7 +15,7 @@ html, body, #root, .App {
     margin: 0px;
     padding: 0px;
     color: white;
-    font-family: 'Baloo Tammudu 2', cursive;
+    font-family: 'Lato', sans-serif;
 }
 
 .App {
