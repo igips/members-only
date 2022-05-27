@@ -1,11 +1,12 @@
 nav {
     background-color: #141414;
     height: 50px;
+    font-weight: 400;
 }
 
 #nav-main-div {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
     max-width: 1600px;
     height: 100%;
     display: flex;
@@ -21,8 +22,19 @@ nav {
     gap: 5px;
 }
 
-#logo-div span {
-    padding-top: 12px;
+.nav-login-reg {
+    display: flex;
+    gap: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nav-login-reg span:hover {
+    color: #B3B3B3;
+}
+
+.nav-login-reg svg {
+    padding-top: 1px;
 }
 
 #logo-div img {
@@ -30,3 +42,7 @@ nav {
     height: 25px;
 }
 
+#login-reg-nav-div {
+    display: flex;
+    gap: 20px;
+}
