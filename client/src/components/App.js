@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../styles/App.css";
 import Nav from "./Nav";
@@ -8,15 +7,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
 function App() {
-	// const [a, setA] = useState(null);
-
-	// useEffect(() => {
-	// 	fetch("/ha")
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			setA(data.message);
-	// 		});
-	// }, []);
+	
 
 	return (
 		<div className="App">
