@@ -46,6 +46,7 @@
     float: left;
     padding: 6px;
     margin-top: 0px;
+    width: 57px;
 }
 
 .signUp-In-btn:hover {
@@ -54,6 +55,10 @@
 
 .signUp-In-btn:active {
     background-color: #BD7A1B;
+}
+
+#signUp-btn-spinner,  #signIn-btn-spinner{
+    display: none;
 }
 
 
