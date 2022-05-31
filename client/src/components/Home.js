@@ -1,7 +1,26 @@
 import "../styles/Home.css";
 import ava from "../img/avatars/ghost.svg";
+import { useEffect } from "react";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../features/user/userSlice";
 
 function Home() {
+	const user = useSelector((state) => state.user.value);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		axios.get("/checkUser").then((res) => {
+			dispatch(setUser(res.data));
+		});
+	}, []);
+
+	function deleteBtn() {
+		if (user.memberStatus === "admin") {
+			return <button className="delete-btn">Delete</button>;
+		}
+	}
+
 	return (
 		<main>
 			<div className="main-main-container">
@@ -12,9 +31,11 @@ function Home() {
 					<div className="message-content-container">
 						<span className="message-title">Sralala</span>
 
-						<div className="message-text-container">HuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalsk</div>
+						<div className="message-text-container">
+							HuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalskHuhushasalsk
+						</div>
 
-                        {/* <button className="delete-btn">Delete</button> */}
+						{deleteBtn()}
 
 						<div className="message-date-username-container">
 							<div className="date-container">
