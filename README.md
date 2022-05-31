@@ -1,1 +1,1 @@
-html js express css react.js react-router mongoose mongodb
+html js express css react.js redux react-router mongoose mongodb
