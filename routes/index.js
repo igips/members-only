@@ -8,9 +8,15 @@ router.post("/signUp", userController.signUp);
 
 router.post("/signIn", userController.signIn);
 
+router.post("/admin", userController.admin);
+
+router.post("/member", userController.member);
+
 router.get("/checkUser", userController.checkUser);
 
-router.get("/signOut", userController.signOut);
+router.post("/signOut", userController.signOut);
+
+
 
 router.get("/*", (req, res) => {
 	res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
