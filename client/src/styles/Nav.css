@@ -6,6 +6,7 @@ nav {
 
 nav a {
 	text-decoration: none;
+	display: flex;
 }
 
 #nav-main-div {
@@ -81,7 +82,7 @@ nav a {
 		justify-content: unset;
 	}
 
-	#login-reg-nav-div {
+	#login-reg-nav-div, .nav-signed-in-links {
 		justify-content: space-between;
 		width: 100%;
 	}
@@ -96,6 +97,9 @@ nav a {
 		padding-left: 10px;
 		padding-right: 10px;
 	}
+	.nav-login-reg {
+        font-size: 11px;
+    }
 }
 
 @media (max-width: 360px) {
@@ -107,7 +111,7 @@ nav a {
 
 @media (max-width: 346px) {
     .nav-login-reg {
-        font-size: 10px;
+        font-size: 9px;
     }
 
 }
@@ -115,6 +119,13 @@ nav a {
 @media (max-width: 305px) {
     .nav-login-reg {
         font-size: 8px;
+    }
+
+}
+
+@media (max-width: 295px) {
+    .nav-login-reg {
+        font-size: 7px;
     }
 
 }
