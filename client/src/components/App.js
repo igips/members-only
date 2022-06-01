@@ -5,9 +5,24 @@ import Footer from "./Footer";
 import Home from "./Home";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import Admin from "./Admin";
+import Member from "./Member";
+import { useDispatch, useSelector} from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
+import { setUser } from "../features/user/userSlice";
 
 function App() {
+	const user = useSelector((state) => state.user.value);
+	const dispatch = useDispatch();
 	
+
+	useEffect(() => {
+		axios.get("/checkUser").then((res) => {
+			dispatch(setUser(res.data));
+		});
+	}, []);
+
 
 	return (
 		<div className="App">
@@ -15,8 +30,10 @@ function App() {
 				<Nav />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/signIn" element={<SignIn />} />
-					<Route path="/signUp" element={<SignUp />} />
+					<Route path="/signIn" element={user.username ? <Home /> : <SignIn />} />
+					<Route path="/signUp" element={user.username ? <Home /> : <SignUp />} />
+					<Route path="/admin" element={user.username ? <Admin /> : <Home />} />
+					<Route path="/member" element={user.username ? <Member /> : <Home />} />
 				</Routes>
 				<Footer />
 			</BrowserRouter>
