@@ -12,7 +12,7 @@ function Nav() {
 	const dispatch = useDispatch();
 
 	function signOut() {
-		axios.get("/signOut").then((res) => {
+		axios.post("/signOut").then((res) => {
 			if (res.data === "success") {
 				dispatch(unSetUser());
 				navigate("/");
@@ -40,19 +40,23 @@ function Nav() {
 			);
 		} else {
 			return (
-				<div className="signIn-signOut-container">
+				<div className="signIn-signOut-container nav-signed-in-links">
 					<div className="nav-login-reg">
 						<i className="fa-solid fa-envelope"></i>
 						<span>Create Message</span>
 					</div>
-					<div className="nav-login-reg">
-						<i className="fa-solid fa-user-graduate"></i>
-						<span>Member</span>
-					</div>
-					<div className="nav-login-reg">
-						<i className="fa-solid fa-user-secret"></i>
-						<span>Admin</span>
-					</div>
+					<Link to="/member">
+						<div className="nav-login-reg">
+							<i className="fa-solid fa-user-graduate"></i>
+							<span>Member</span>
+						</div>
+					</Link>
+					<Link to="/admin">
+						<div className="nav-login-reg">
+							<i className="fa-solid fa-user-secret"></i>
+							<span>Admin</span>
+						</div>
+					</Link>
 					<div onClick={() => signOut()} className="nav-login-reg">
 						<i className="fa-solid fa-arrow-right-to-bracket"></i>
 						<span>Sign Out</span>
