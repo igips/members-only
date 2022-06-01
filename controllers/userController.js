@@ -34,7 +34,17 @@ exports.signUp = [
 								if (err) {
 									return next(err);
 								}
-								res.json("success");
+								passport.authenticate("local", (err, user, info) => {
+									if (err) {
+										return console.error(err);
+									}
+									req.logIn(user, (err) => {
+										if (err) {
+											return console.error(err);
+										}
+										res.json(user);
+									});
+								})(req, res, next);
 							});
 						});
 					}
@@ -45,8 +55,8 @@ exports.signUp = [
 ];
 
 exports.signIn = [
-	check("username").trim().escape(),
-	check("password").trim().escape(),
+	body("username").trim().escape(),
+	body("password").trim().escape(),
 	(req, res, next) => {
 		const errors = validationResult(req);
 
@@ -64,6 +74,7 @@ exports.signIn = [
 					if (err) {
 						next(err);
 					}
+					
 					res.json(user);
 				});
 			})(req, res, next);
@@ -83,3 +94,61 @@ exports.signOut = (req, res, next) => {
 		res.json("success");
 	});
 };
+
+exports.admin = [
+	body("password").trim().escape(),
+	(req, res, next) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			return next(errors);
+		} else {
+			if (req.body.password == process.env.adminPass) {
+				const user = new User({
+					_id: req.body.user._id,
+					username: req.body.user.username,
+					password: req.body.user.password,
+					memberStatus: "admin",
+				});
+
+				User.findByIdAndUpdate(req.body.user._id, user, (err, theUser) => {
+					if (err) {
+						return next(err);
+					}
+					res.json(user);
+				});
+			} else {
+				res.json("Incorrect password!");
+			}
+		}
+	},
+];
+
+exports.member = [
+	body("password").trim().escape(),
+	(req, res, next) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			return next(errors);
+		} else {
+			if (req.body.password == process.env.memberPass) {
+				const user = new User({
+					_id: req.body.user._id,
+					username: req.body.user.username,
+					password: req.body.user.password,
+					memberStatus: "member",
+				});
+
+				User.findByIdAndUpdate(req.body.user._id, user, (err, theUser) => {
+					if (err) {
+						return next(err);
+					}
+					res.json(user);
+				});
+			} else {
+				res.json("Incorrect password!");
+			}
+		}
+	},
+];
