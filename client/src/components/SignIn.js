@@ -3,12 +3,16 @@ import spy from "../img/avatars/spy.svg";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../features/user/userSlice";
 
 function SignIn() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
-
+	const user = useSelector((state) => state.user.value);
+	const dispatch = useDispatch();
+	
 	function handleUsernameChange(e) {
 		setUsername(e.target.value);
 	}
@@ -42,6 +46,7 @@ function SignIn() {
 					passInput.setCustomValidity("Incorrect password!");
 					submitButton.click();
 				} else {
+					dispatch(setUser(res.data));
 					navigate("/");
 				}
 			})
@@ -50,45 +55,53 @@ function SignIn() {
 			});
 	}
 
-	return (
-		<main>
-			<div className="singUpIn-main-container">
-				<div className="signUpIn-inner-container">
-					<p className="signUp-In-span">Sign In!</p>
-					<img src={spy} alt="" />
-					<form method="POST" onSubmit={(e) => handleSubmit(e)}>
-						<input
-							id="signIn-username-input"
-							type="text"
-							maxLength="15"
-							minLength="3"
-							placeholder="Username"
-							onChange={(e) => handleUsernameChange(e)}
-							value={username}
-							required
-							onInput={() => document.getElementById("signIn-username-input").setCustomValidity("")}
-						/>
-						<input
-							id="passSignIn"
-							type="password"
-							minLength="6"
-							placeholder="Password"
-							onChange={(e) => handlePasswordChange(e)}
-							value={password}
-                            onInput={() => document.getElementById("passSignIn").setCustomValidity("")}
-							required
-						/>
-						<button id="signIn-submit-btn" type="submit" className="signUp-In-btn">
-							<div id="signIn-btn-spinner">
-								<i className="fa-solid fa-circle-notch fa-spin"></i>
-							</div>
-							<span id="signIn-btn-span">Sign In</span>
-						</button>
-					</form>
+	function content() {
+		
+		if (typeof user === "string") {
+			return (
+				<div className="singUpIn-main-container">
+					<div className="signUpIn-inner-container">
+						<p className="signUp-In-span">Sign In!</p>
+						<img src={spy} alt="" />
+						<form method="POST" onSubmit={(e) => handleSubmit(e)}>
+							<input
+								id="signIn-username-input"
+								type="text"
+								maxLength="15"
+								minLength="3"
+								placeholder="Username"
+								onChange={(e) => handleUsernameChange(e)}
+								value={username}
+								required
+								onInput={() => document.getElementById("signIn-username-input").setCustomValidity("")}
+								autoComplete="off"
+							/>
+							<input
+								id="passSignIn"
+								type="password"
+								minLength="6"
+								placeholder="Password"
+								onChange={(e) => handlePasswordChange(e)}
+								value={password}
+								onInput={() => document.getElementById("passSignIn").setCustomValidity("")}
+								required
+							/>
+							<button id="signIn-submit-btn" type="submit" className="signUp-In-btn">
+								<div id="signIn-btn-spinner">
+									<i className="fa-solid fa-circle-notch fa-spin"></i>
+								</div>
+								<span id="signIn-btn-span">Sign In</span>
+							</button>
+						</form>
+					</div>
 				</div>
-			</div>
-		</main>
-	);
+			);
+		} else {
+			return (<></>)
+		}
+	}
+
+	return <main>{content()}</main>;
 }
 
 export default SignIn;
