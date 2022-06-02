@@ -10,7 +10,7 @@ export const userSlice = createSlice({
 			state.value = action.payload;
 		},
 		unSetUser: (state) => {
-			state.value = {};
+			state.value = "";
 		},
 	},
 });
