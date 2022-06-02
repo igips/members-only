@@ -12,9 +12,17 @@ router.post("/admin", userController.admin);
 
 router.post("/member", userController.member);
 
+router.post("/signOut", userController.signOut);
+
+router.post("/message", messageController.message);
+
+router.post("/deleteMessage", messageController.deleteMessage);
+
 router.get("/checkUser", userController.checkUser);
 
-router.post("/signOut", userController.signOut);
+router.get("/getMessages", messageController.getMessages);
+
+
 
 
 
