@@ -41,10 +41,12 @@ function Nav() {
 		} else {
 			return (
 				<div className="signIn-signOut-container nav-signed-in-links">
-					<div className="nav-login-reg">
-						<i className="fa-solid fa-envelope"></i>
-						<span>Create Message</span>
-					</div>
+					<Link to="/message">
+						<div className="nav-login-reg">
+							<i className="fa-solid fa-envelope"></i>
+							<span>Create Message</span>
+						</div>
+					</Link>
 					<Link to="/member">
 						<div className="nav-login-reg">
 							<i className="fa-solid fa-user-graduate"></i>
