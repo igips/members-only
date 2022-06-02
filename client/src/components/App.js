@@ -11,6 +11,7 @@ import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import { setUser } from "../features/user/userSlice";
+import Message from "./Message";
 
 function App() {
 	const user = useSelector((state) => state.user.value);
@@ -34,6 +35,7 @@ function App() {
 					<Route path="/signUp" element={user.username ? <Home /> : <SignUp />} />
 					<Route path="/admin" element={user.username ? <Admin /> : <Home />} />
 					<Route path="/member" element={user.username ? <Member /> : <Home />} />
+					<Route path="/message" element={user.username ? <Message /> : <Home />} />
 				</Routes>
 				<Footer />
 			</BrowserRouter>
