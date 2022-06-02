@@ -55,20 +55,23 @@ main {
     word-break: break-word;
     border-radius: 20px;
     padding: 14px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .message-date-username-container {
     margin-top: 4%;
     float: right;
-    width: 120px;
+    width: 130px;
+    display: flex;
+    flex-direction: column;
 }
 
 .date-container, .username-container {
     font-size: 11px;
-    float: right;
     margin: 2%;
     padding: 4%;
+    width: fit-content;
+    align-self: end;
 }
 
 .username-container {
