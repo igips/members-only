@@ -11,8 +11,8 @@ const User = require("./models/user.js");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const indexRouter = require("./routes/index");
-const compression = require('compression');
-const helmet = require('helmet');
+const compression = require("compression");
+const helmet = require("helmet");
 require("dotenv").config();
 
 const app = express();
@@ -61,7 +61,11 @@ passport.deserializeUser((id, done) => {
 });
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(helmet());
+app.use(
+	helmet({
+		contentSecurityPolicy: false,
+	})
+);
 app.use(compression());
 app.use(logger("dev"));
 app.use(express.json());
