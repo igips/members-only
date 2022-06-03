@@ -15,17 +15,17 @@ function Home() {
     
 
 	useEffect(() => {
-		axios.get("/checkUser").then((res) => {
+		axios.get("/user").then((res) => {
 			dispatch(setUser(res.data));
 		});
 
-		axios.get("/getMessages").then((res) => {
+		axios.get("/messages").then((res) => {
 			dispatch(setMessages(res.data));
 		});
 	}, []);
 
     function deleteMessage(id) {
-        axios.post("/deleteMessage", {messageId: id}).then((res) => {
+        axios.delete(`/message/${id}`).then((res) => {
             dispatch(setMessages(res.data));
         });
     }
