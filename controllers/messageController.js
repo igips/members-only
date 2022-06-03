@@ -21,7 +21,7 @@ exports.message = [
 
 			message.save((err) => {
 				if (err) {
-					return next(err);
+					return res.status(err.status).json({error: err}); 
 				}
 
 				res.json(message);
@@ -35,7 +35,7 @@ exports.getMessages = (req, res, next) => {
 		.populate("user")
 		.exec((err, messages) => {
 			if (err) {
-				return next(err);
+				return res.status(err.status).json({error: err}); 
 			}
 
 			messages.reverse();
@@ -45,16 +45,16 @@ exports.getMessages = (req, res, next) => {
 };
 
 exports.deleteMessage = (req, res, next) => {
-	Message.findByIdAndRemove(req.body.messageId, (err) => {
+	Message.findByIdAndRemove(req.params.id, (err) => {
 		if (err) {
-			return next(err);
+			return res.status(err.status).json({error: err}); 
 		}
-
+	
 		Message.find({})
 			.populate("user")
 			.exec((err, messages) => {
 				if (err) {
-					return next(err);
+					return res.status(err.status).json({error: err}); 
 				}
 
 				messages.reverse();
