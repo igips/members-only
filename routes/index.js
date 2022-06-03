@@ -8,22 +8,19 @@ router.post("/signUp", userController.signUp);
 
 router.post("/signIn", userController.signIn);
 
-router.post("/admin", userController.admin);
+router.put("/admin/:id", userController.admin);
 
-router.post("/member", userController.member);
+router.put("/member/:id", userController.member);
 
 router.post("/signOut", userController.signOut);
 
 router.post("/message", messageController.message);
 
-router.post("/deleteMessage", messageController.deleteMessage);
+router.delete("/message/:id", messageController.deleteMessage);
 
-router.get("/checkUser", userController.checkUser);
+router.get("/user", userController.checkUser);
 
-router.get("/getMessages", messageController.getMessages);
-
-
-
+router.get("/messages", messageController.getMessages);
 
 
 router.get("/*", (req, res) => {
