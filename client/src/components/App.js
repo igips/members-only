@@ -19,7 +19,7 @@ function App() {
 	
 
 	useEffect(() => {
-		axios.get("/checkUser").then((res) => {
+		axios.get("/user").then((res) => {
 			dispatch(setUser(res.data));
 		});
 	}, []);
