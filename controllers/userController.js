@@ -15,7 +15,7 @@ exports.signUp = [
 			User.findOne({ username: { $regex: "^" + req.body.username + "$", $options: "i" } }).exec(
 				(err, foundUser) => {
 					if (err) {
-						return next(err);
+						return res.status(err.status).json({error: err}); 
 					}
 
 					if (foundUser) {
@@ -23,7 +23,7 @@ exports.signUp = [
 					} else {
 						bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
 							if (err) {
-								return next(err);
+								return res.status(err.status).json({error: err}); 
 							}
 
 							const user = new User({
@@ -32,15 +32,15 @@ exports.signUp = [
 								memberStatus: "user",
 							}).save((err) => {
 								if (err) {
-									return next(err);
+									return res.status(err.status).json({error: err}); 
 								}
 								passport.authenticate("local", (err, user, info) => {
 									if (err) {
-										return console.error(err);
+										return res.status(err.status).json({error: err}); 
 									}
 									req.logIn(user, (err) => {
 										if (err) {
-											return console.error(err);
+											return res.status(err.status).json({error: err}); 
 										}
 										res.json(user);
 									});
@@ -65,14 +65,14 @@ exports.signIn = [
 		} else {
 			passport.authenticate("local", (err, user, info) => {
 				if (err) {
-					return next(err);
+					return res.status(err.status).json({error: err}); 
 				}
 				if (!user) {
 					return res.json({ message: info.message });
 				}
 				req.logIn(user, (err) => {
 					if (err) {
-						next(err);
+						return res.status(err.status).json({error: err}); 
 					}
 					
 					res.json(user);
@@ -89,7 +89,7 @@ exports.checkUser = (req, res, next) => {
 exports.signOut = (req, res, next) => {
 	req.logOut((err) => {
 		if (err) {
-			return next(err);
+			return res.status(err.status).json({error: err}); 
 		}
 		res.json("success");
 	});
@@ -113,7 +113,7 @@ exports.admin = [
 
 				User.findByIdAndUpdate(req.body.user._id, user, (err, theUser) => {
 					if (err) {
-						return next(err);
+						return res.status(err.status).json({error: err}); 
 					}
 					res.json(user);
 				});
@@ -142,7 +142,7 @@ exports.member = [
 
 				User.findByIdAndUpdate(req.body.user._id, user, (err, theUser) => {
 					if (err) {
-						return next(err);
+						return res.status(err.status).json({error: err}); 
 					}
 					res.json(user);
 				});
