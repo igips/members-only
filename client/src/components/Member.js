@@ -27,7 +27,7 @@ function Member() {
 		btnSpinner.style.display = "block";
 
 		axios
-			.post("/member", { password: password, user: user })
+			.put(`/member/${user._id}`, { password: password, user: user })
 			.then((res) => {
 				btnSpinner.style.display = "none";
 				btnSpan.style.display = "block";

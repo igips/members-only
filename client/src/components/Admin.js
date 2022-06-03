@@ -28,7 +28,7 @@ function Admin() {
 		btnSpinner.style.display = "block";
 
 		axios
-			.post("/admin", { password: password, user: user })
+			.put(`/admin/${user._id}`, { password: password, user: user })
 			.then((res) => {
 				btnSpinner.style.display = "none";
 				btnSpan.style.display = "block";
