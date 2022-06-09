@@ -14,6 +14,7 @@ Project made to practice connecting React frontend to Express backend and also t
 
 ## Built with
 - [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
 - [Express](https://expressjs.com/)
 - [PassportJS](https://www.passportjs.org/)
 - [MongoDB](https://www.mongodb.com/)
